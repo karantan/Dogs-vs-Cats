@@ -2,7 +2,8 @@
 Dogs vs. Cats Redux: Kernels Edition
 ====================================
 
-The purpose of this project is ...
+The purpose of this project is to demonstrate how training CNN model is
+preformed. Once we have trained the model we can then use it.
 
 
 Prerequisites
@@ -28,6 +29,36 @@ $ source activate Dogs-vs-Cats
 (Dogs-vs-Cats)$ 
 ```
 
+You will probably also need to change the ``.keras/keras.json`` file so that
+it is using ``theano`` and not ``tensorflow``:
+
+```bash
+{
+    "floatx": "float32",
+    "epsilon": 1e-07,
+    "image_dim_ordering": "th",
+    "backend": "theano"
+}
+```
+
+And create ``~.theanorc`` config file with the following content:
+
+```bash
+
+[global]
+floatX=float32
+device=gpu
+[mode]=FAST_RUN
+
+[nvcc]
+fastmath=True
+
+[cuda]
+root=/usr/local/cuda
+```
+
+
+
 Get the images
 --------------
 
@@ -48,6 +79,7 @@ imagenet dogs and cats images.
 ```bash
 (Dogs-vs-Cats)$ mkdir models && cd models
 (Dogs-vs-Cats)$ wget http://files.fast.ai/models/vgg16.h5
+(Dogs-vs-Cats)$ wget http://files.fast.ai/models/imagenet_class_index.json
 ```
 
 
