@@ -1,12 +1,13 @@
 import numpy
+from keras import backend as keras_backedn
 
 from keras.models import load_model
 from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 from src.utils import get_logger
 
+keras_backedn.set_image_dim_ordering('th')
 logger = get_logger()
-
 
 IMAGE_WIDTH = 224
 IMAGE_HEIGHT = 224
